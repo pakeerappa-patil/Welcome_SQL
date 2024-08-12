@@ -1,0 +1,427 @@
+right format
+===========
+create table trendytech.employee
+(
+name varchar(20),
+age INT,
+salary INT
+);
+
+create table employee
+(
+name varchar(20),
+age INT,
+salary INT
+);
+
+create table employee(
+name varchar(25),
+age int,
+salary int
+);
+
+show errors
+===========
+create table employee
+(
+name,
+age,
+salary
+);
+
+create table employee
+(
+name varchar,
+age int,
+salary int
+);
+
+
+=> mention datatypes must and () for int datatypes are not required.
+
+
+CRUD OPERTAIONS:
+==============
+CREATE,READ,UPDATE,DELETE
+
+DDL COMMANDS(DATA DEFINITION LANGUAGE): Deals with the structure of the table 
+=============
+ex: CREATE,DROP,ALTER,RENAME,COMMENT,TRUNCATE(ONLY DELETE TABLE NOT the DATA INSIDE IT)
+
+ALTER TABLE Table_name ADD column_name datatype;
+RENAME TABLE table_name1 to new_table_name1;
+TRUNCATE table CUSTOMERS;
+=>Statements starting with -- are treated as single line comments.
+
+DML COMMANDS(DATA MANIPULATION LANGUAGE): Deals with the DATA of the table 
+=============
+INSERT,SELECT,UPDATE, 
+
+DELETE FROM table_name where condition;
+DELETE FROM CUSTOMERS where InsuranceID='123';
+UPDATE CUSTOMERS SET email_id = 'mango.lo@xyz.com' WHERE InsuranceID='123';
+
+
+
+CREATE TABLE employee(
+firstname varchar(20),
+middlename varchar(20),
+lastname varchar(20),
+age int,
+salary int,
+location varchar(20)
+);
+
+select * from employee;
+
+INSERT into employee(firstname,middlename,lastname,age,salary,location) 
+VALUES('Pakeerappa','sannalagamappa','patil','26','60000','belgaum');
+
+INSERT INTO employee(firstname, middlename, lastname, age, salary, location) 
+VALUES('Iranna','sannalagamappa','patil', 26, 60000,'belgaum');
+
+INSERT INTO employee VALUES('Iranna','-','patil', 26, 60000,'belgaum');
+
+INSERT INTO employee(firstname, middlename, lastname, age, salary, location) 
+VALUES('Iranna','sannalagamappa','patil', 26, 60000,'belgaum'),
+('raju','shivappa','jyadi', 36, 60000,'belgaum'),
+('arjun','shivappa','jyadi', 36, 60000,'belgaum');
+
+insert into employee (firstname,lastname, age, salary, location)
+values("rakesh'sh",'biradar\'s','25','60000','gokak');
+
+
+
+
+CREATE TABLE employees(
+firstname varchar(20) NOT NULL,
+middlename varchar(20),
+lastname varchar(20) NOT NULL,
+age int NOT NULL,
+salary int NOT NULL,
+location varchar(20) NOT NULL default'banglore'
+);
+
+INSERT INTO employees(firstname,middlename, lastname, age, salary) 
+VALUES('john','sannalagamappa','patil', 26, 60000),
+('pat','shivappa','jyadi', 36, 60000),
+('cumin','shivappa','jyadi', 36, 60000);
+
+INSERT INTO employees(firstname,lastname, age, salary) 
+VALUES('john','patil', 26, 60000);
+
+
+INSERT INTO employees(firstname,lastname, age, salary) 
+VALUES('john','patil', 26, 60000);
+('pat','shivappa','jyadi', 36, 60000),
+('cumin','shivappa','jyadi', 36, 60000);
+
+
+INSERT INTO employee(middlename, lastname, salary,location) 
+VALUES('sannalagamappa','patil', 60000,'belgavi'),
+('shivappa','jyadi', 60000,'belgaum'),
+('shivappa','jyadi', 60000,'');
+
+INSERT INTO employee(middlename, lastname, age, salary)
+VALUES('sannalagamappa','patil', 86, 60000);
+
+
+
+CREATE TABLE students(
+student_id int auto_increment,
+student_fname varchar(20) NOT NULL,
+student_lname varchar(20) NOT NULL,
+student_email varchar(20) NOT NULL,
+student_phone varchar(20) NOT NULL,
+student_alternate_phone varchar(20),
+enrollment_date timestamp NOT NULL,
+years_of_experience int NOT NULL,
+student_company varchar(20),
+batch_date varchar(20) NOT NULL,
+source_of_joining varchar(25) NOT NULL, 
+location varchar(20) NOT NULL,
+primary key (student_id),
+unique key (student_email)
+);
+
+INSERT INTO students(student_fname, student_lname, student_email, student_phone, years_of_experience, student_company, batch_date, source_of_joining, location) 
+VALUES('shubman','gill','gill@gmail.com', 8654975650, 3,'walmart','5-2-23','linkedin', 'banglore'),('rohit','sharma','sharma@gmail.com', 8654956490, 1,'microsoft','15-3-23','google', 'pune'),
+('virat','kohli','virat@gmail.com', 7795975650, 4,'walmart','23-2-23','linkedin', 'banglore'), ('shreyas','iyer','shreyas@gmail.com', 8656860650, 2,'flipkart','5-3-23','friend', 'chennai'),
+('rahul','patil','rahul@gmail.com', 7794575650, 4,'tcs','23-2-23','friend', 'mumbai'), ('surya','yadav','surya@gmail.com', 3376975650, 1,'wipro','24-2-23','noukri', 'gurgaon'),
+('ravindra','jadeja','ravindra@gmail.com', 7795675650, 6,'infosys','23-2-23','google', 'chennai');
+
+
+CREATE TABLE courses(
+course_id int not null,
+course_name varchar(30) not null,
+course_duration_months int not null,
+course_fee int not null,
+primary key(course_id)
+);
+
+insert into courses values(1,'bigdata', 6, 50000),(2,'web development',3, 20000),(3,'data science', 6, 40000),(4,'devops', 1,10000);
+insert into courses values(4,'devops', 1,10000);
+
+CREATE TABLE students(
+student_id int auto_increment,
+student_fname varchar(20) NOT NULL,
+student_lname varchar(20) NOT NULL,
+student_email varchar(20) NOT NULL,
+student_phone varchar(20) NOT NULL,
+student_alternate_phone varchar(20),
+selected_course int not null default 1,
+enrollment_date timestamp NOT NULL,
+years_of_experience int NOT NULL,
+student_company varchar(20),
+batch_date varchar(20) NOT NULL,
+source_of_joining varchar(25) NOT NULL, 
+location varchar(20) NOT NULL,
+primary key (student_id),
+unique key (student_email),
+foreign key(selected_course) references courses(course_id)
+);
+
+INSERT INTO students(student_fname, student_lname, student_email, student_phone,selected_course, years_of_experience, student_company, batch_date, source_of_joining, location) 
+VALUES('shubman','gill','gill@gmail.com', 8654975650,2, 3,'walmart','5-2-23','linkedin', 'banglore');
+
+INSERT INTO students(student_fname, student_lname, student_email, student_phone, years_of_experience, student_company, batch_date, source_of_joining, location) 
+VALUES('rohit','sharma','sharma@gmail.com', 8654956490, 1,'microsoft','15-3-23','google', 'pune');
+
+INSERT INTO students(student_fname, student_lname, student_email, student_phone,selected_course, years_of_experience, student_company, batch_date, source_of_joining, location) 
+VALUES('virat','kohli','virat@gmail.com', 7795975650,3, 4,'walmart','23-2-23','linkedin', 'banglore');
+
+INSERT INTO students(student_fname, student_lname, student_email, student_phone, years_of_experience, student_company, batch_date, source_of_joining, location) 
+VALUES('shreyas','iyer','shreyas@gmail.com', 8656860650, 2,'flipkart','5-3-23','friend', 'chennai');
+
+
+INSERT INTO students(student_fname, student_lname, student_email, student_phone,selected_course, years_of_experience, student_company, batch_date, source_of_joining, location) 
+VALUES('rahul','patil','rahul@gmail.com', 7794575650,3, 4,'tcs','23-2-23','friend', 'mumbai');
+
+INSERT INTO students(student_fname, student_lname, student_email, student_phone,selected_course, years_of_experience, student_company, batch_date, source_of_joining, location) 
+VALUES ('surya','yadav','surya@gmail.com', 3376975650, 2,1,'wipro','24-2-23','noukri', 'gurgaon');
+
+INSERT INTO students(student_fname, student_lname, student_email, student_phone, years_of_experience, student_company, batch_date, source_of_joining, location) 
+VALUES('ravindra','jadeja','ravindra@gmail.com', 7795675650, 6,'infosys','23-2-23','google', 'chennai');
+
+INSERT INTO students(student_fname, student_lname, student_email, student_phone,selected_course, years_of_experience, student_company, batch_date, source_of_joining, location) 
+VALUES('jasprith','bumrah','boom@gmail.com', 7798975650,5, 6,'infosys','23-2-23','google', 'chennai');
+
+select student_fname,student_lname, student_email, student_phone,selected_course,years_of_experience from students order by years_of_experience;  
+
+select distinct student_email from students;  
+
+select student_fname,student_lname, student_email, student_phone,selected_course,years_of_experience,enrollment_date from students order by student_fname desc;  
+
+select student_fname,student_lname, student_email,years_of_experience from students order by years_of_experience, student_fname; 
+
+select student_fname,student_lname, student_email,years_of_experience from students limit 3; 
+
+select student_fname,student_lname, student_email,selected_course,years_of_experience from students order by years_of_experience desc limit 5;  
+select student_fname,student_lname, student_email,selected_course,years_of_experience from students order by years_of_experience desc limit 4,1;  
+
+select student_fname,student_lname, student_email,selected_course,years_of_experience from students order by years_of_experience desc limit 4,1 where student_fname like %ra%;  
+select student_fname,student_lname, student_email,selected_course,years_of_experience from students where student_fname like 'r%' order by years_of_experience;  
+
+select student_fname,student_lname, student_email,selected_course,years_of_experience from students where student_fname like '__u%' order by years_of_experience; 
+
+select student_fname,student_lname, student_email,selected_course,years_of_experience from students where student_fname like '_____' order by years_of_experience;
+
+aggregate
+========
+groupby
+======
+select count(*) from students;
+
+select count(distinct student_company) as 'no_of_company' from students;
+
+select count(distinct student_company) from students;
+
+select count(distinct selected_course ) as 'no_of_course' from students;
+
+select count(batch_date) from students where batch_date like '%-2-%';
+   
+select source_of_joining from students group by source_of_joining;
+
+select count(*),source_of_joining from students group by source_of_joining;
+
+select count(student_fname),source_of_joining from students group by source_of_joining;
+
+
+select selected_course, count(*)  from students group by selected_course;
+select count(student_fname) as 'student_per_course',selected_course from students group by selected_course;
+
+
+select batch_date,count(selected_course) from students group by batch_date;
+select batch_date,selected_course,count(selected_course) from students group by batch_date,selected_course;
+select batch_date,selected_course from students;
+
+max and min
+==========
+select  min(years_of_experience) from students;
+select student_id from students where years_of_experience=1;
+select source_of_joining, max(years_of_experience) from students group by source_of_joining;
+
+sum
+====
+select source_of_joining, sum(years_of_experience) from students group by source_of_joining;
+
+update
+======
+update students set location= 'mumbai' where student_id =2;
+
+not equal to
+==========
+select * from students where location != 'banglore';
+
+select course_name from courses where course_name like '%data%';
+
+select course_name from courses where course_name not like '%data%';
+
+select * from students where location='mumbai' and source_of_joining='google';
+
+
+select * from students where years_of_experience < 4 or years_of_experience >1 ;
+
+select * from students where years_of_experience < 4 and years_of_experience >1 ;
+select * from students where years_of_experience between 1 and 4;
+select * from students where years_of_experience not between 1 and 4;
+
+select student_fname from students where student_company=('walmart','flipkart','tcs');
+select * from students where student_company = 'walmart';
+select student_fname from students where student_company in ('walmart','flipkart','tcs');
+select distinct student_company,count(student_fname) from students group by student_company;
+select student_fname from students where student_company not in ('walmart','flipkart','tcs');
+
+CREATE TABLE courses(
+course_id int not null,
+course_name varchar(30) not null,
+course_duration_months int not null,
+course_fee int not null,
+primary key(course_id)
+);
+
+select course_id,course_name,course_duration_months,course_fee,
+CASE
+when course_duration_months>3 then 'masters'
+else 'diploma'
+end as 'course_type' from courses;
+
+select student_fname,student_company,years_of_experience,
+case
+when student_company in ('walmart','flipkart','tcs') then 'product based'
+else 'service based'
+end as company_type from students;
+
+joins
+====
+select course_name from courses where course_id=(select selected_course from students where student_fname='virat');
+select student_fname,course_name from students join courses where course_id=selected_course;
+select student_fname,course_name from students join courses on courses.course_id=students.selected_course;
+
+
+select student_fname,course_name from students left join courses on courses.course_id=students.selected_course;
+
+select student_fname,course_name from students right join courses on courses.course_id=students.selected_course;
+
+
+select student_fname,course_name from students left join courses on courses.course_id=students.selected_course 
+union select student_fname,course_name from students right join courses on courses.course_id=students.selected_course;
+
+where vs having
+===============
+
+"where" clause is used to filter the individual records before group by(aggregation) and having is used after group by to do filter on the aggregated records.
+
+
+  select source_of_joining, count(*) as total from students group by source_of_joining having total>1;
+
+select source_of_joining, count(*) as total from students where source_of_joining= 'google'  group by source_of_joining;
+
+select location,count(*) as total from students where years_of_experience>3 group by location having total>1;
+
+select location,years_of_experience from students;
+
+
+over partition by
+===================
+
+
+CREATE TABLE workers (
+firstname varchar(20),
+lastname varchar(20),
+age int,
+salary int,
+location varchar(20)
+);
+INSERT INTO workers values('ramesh','patil', 26, 50000,'belgaum'),
+INSERT INTO workers values('shane','jyadi', 36, 45000,'hubli'),
+INSERT INTO workers values('madesha','ghadi', 30, 25000,'gokak'),
+INSERT INTO workers values('abhi','solle', 24, 15000,'gokak'),
+INSERT INTO workers values('gundu','rao', 26, 35000,'belgaum'),
+INSERT INTO workers values('sharat','byadralli', 27, 45000,'hubli');
+
+select location,count(location),avg(salary) from workers group by location;
+
+select firstname,lastname,workers.location,total_count,avg_salary from workers join
+(select location,count(location) as total_count,avg(salary) as avg_salary from workers group by location) temptable on workers.location=temptable.location;
+
+firstname	lastname	location	total_count	avg_salary
+ramesh		patil		belgaum		2		42500.0000
+shane		jyadi		hubli		2		45000.0000
+madesha		ghadi		gokak		2		20000.0000
+abhi		solle		gokak		2		20000.0000
+gundu		rao		belgaum		2		42500.0000
+sharat		byadralli	hubli		2		45000.0000
+
+
+select firstname,lastname,location,count(location) over (partition by location) as total_count from workers;
+
+row number
+=========
+select firstname,lastname,salary, row_number() over (order by salary desc) from workers;
+
+select*from (select firstname,lastname,salary, row_number() over (order by salary desc) as rownum from workers) temptable where rownum=5;
+
+select*from (select firstname,lastname,salary, row_number() over (order by firstname) as rownum from workers) temptable where rownum=5;
+select firstname,lastname,salary, row_number() over (order by firstname) as rownum from workers;
+
+select firstname,lastname,salary,location, row_number() over (partition by location order by salary desc) as rownum from workers;
+select*from (select firstname,lastname,salary,location, row_number() over (partition by location order by salary desc) as rownum from workers) temptable where rownum=1;
+
+select firstname,lastname,salary, row_number() over (order by salary desc) from workers;
+select firstname,lastname,salary, rank() over (order by salary desc) from workers;
+select firstname,lastname,salary, dense_rank() over (order by salary desc) from workers;
+
+
+querry
+======
+create table data(
+product varchar(25),
+amount bigint,
+country varchar(25)
+);
+
+
+insert into data values('banana','1000','usa'),
+('carriot','1500','usa'),
+('beans','1600','usa'),
+('orrange','2000','usa'),
+('banana','2000','usa'),
+('carriot','1200','china'),
+('banana','400','china'),
+('beans','1500','china'),
+('orrange','4000','china'),
+('banana','2000','canada'),
+('carriot','2000','canada'),
+('beans','2000','mexico');
+
+select product,
+case when country='usa' then amount end as usa,
+case when country='china' then amount end as china, 
+case when country='canada' then amount end as canada,
+case when country='mexico' then amount end as mexico from data;
+
+
+
+
+
